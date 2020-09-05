@@ -9,7 +9,8 @@ public class EmpWageBuilder {
 		int fullTime = 0;
 		int totalEmpHours = 0;
 		int empHrs=0;
-		while (workingDays < maxWorkingDays) {
+		int maxWorkingHrs=100;
+		while (workingDays < maxWorkingDays && totalEmpHours < maxWorkingHrs) {
 			workingDays++;
 			final double randomValue = Math.floor(Math.random() * 10) % 3;
 			switch ((int) randomValue) {
@@ -31,9 +32,10 @@ public class EmpWageBuilder {
 			}
 			totalEmpHours = totalEmpHours + empHrs;
 		}
-		System.out.println("Employee was Present as Full Time for " +fullTime);
-		System.out.println("Employee was Present as Part Time for " +partTime);
-		System.out.println("Employee was Present as absent for " +empAbsent);
+		System.out.println("Employee was Present as Full Time for " +fullTime+" Days");
+		System.out.println("Employee was Present as Part Time for " +partTime+" Days");
+		System.out.println("Employee was Present as absent for " +empAbsent+" Days");
+		System.out.println("Employee worked for a total of " + totalEmpHours + " Hours in " + workingDays+" Days");
 		int empWage= totalEmpHours * empWagePerHr;
 		System.out.println("Total Employee Salary for the month is " +empWage);
 	}
