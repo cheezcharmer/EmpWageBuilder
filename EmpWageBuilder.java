@@ -1,5 +1,6 @@
+import java.util.*;
 
-	interface empWageCalculator {
+interface empWageCalculator {
 		int empWage(int empWagePerHr, int maxWorkingDays, int workingDays, int empAbsent, int partTime, int fullTime, int totalEmpHours, int empHrs, int maxWorkingHrs, String company);
 	}
 
@@ -18,21 +19,23 @@
 			int totalEmpHours = 0;
 			int empHrs = 0;
 
-			int[] wages = new int[3];
+			List<Integer> wages = new ArrayList<>();
+
 			String company1 = "Microsoft";
 			String company2 = "Tesla";
 			String company3 = "SpaceX";
 			//Storing all wages in array
-			wages[0] = a.empWage(20, 26, workingDays, empAbsent, partTime, fullTime, totalEmpHours, empHrs, 100, company1);
-			wages[1] = a.empWage(30, 24, workingDays, empAbsent, partTime, fullTime, totalEmpHours, empHrs, 150, company2);
-			wages[2] = a.empWage(25, 28, workingDays, empAbsent, partTime, fullTime, totalEmpHours, empHrs, 200, company3);
+			wages.add(0, a.empWage(20, 26, workingDays, empAbsent, partTime, fullTime, totalEmpHours, empHrs, 100, company1));
+			wages.add(1, a.empWage(30, 24, workingDays, empAbsent, partTime, fullTime, totalEmpHours, empHrs, 150, company2));
+			wages.add(2, a.empWage(25, 28, workingDays, empAbsent, partTime, fullTime, totalEmpHours, empHrs, 200, company3));
 			//Printing all stored wages
-			System.out.println("Total Wages for month for " + company1 + " are " + wages[0]);
-			System.out.println("Total Wages for month for " + company2 + " are " + wages[1]);
-			System.out.println("Total Wages for month for " + company3 + " are " + wages[2]);
+			System.out.println("Total Wages for month for " + company1 + " are " + wages.get(0));
+			System.out.println("Total Wages for month for " + company2 + " are " + wages.get(1));
+			System.out.println("Total Wages for month for " + company3 + " are " + wages.get(2));
 		}
 
 
+		@Override
 		public int empWage(int empWagePerHr, int maxWorkingDays, int workingDays, int empAbsent, int partTime, int fullTime, int totalEmpHours, int empHrs, int maxWorkingHrs, String company) {
 			//Calculating work hours until maximum work days and hours are reached
 			while (workingDays < maxWorkingDays && totalEmpHours < maxWorkingHrs) {
