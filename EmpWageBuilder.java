@@ -1,5 +1,6 @@
 public class EmpWageBuilder {
 	public static void main(String[] args) {
+
 		EmpWageBuilder a = new EmpWageBuilder();
 
 
@@ -17,9 +18,11 @@ public class EmpWageBuilder {
 		String company1 = "Microsoft";
 		String company2 = "Tesla";
 		String company3 = "SpaceX";
+		//Storing all wages in array
 		wages[0] = a.empWage(20,26,workingDays, empAbsent, partTime, fullTime, totalEmpHours, empHrs, 100, company1);
 		wages[1] = a.empWage(30,24, workingDays, empAbsent, partTime, fullTime, totalEmpHours, empHrs, 150, company2);
 		wages[2] = a.empWage(25, 28, workingDays, empAbsent, partTime, fullTime, totalEmpHours, empHrs, 200, company3);
+		//Printing all stored wages
 		System.out.println("Total Wages for month for "+company1+" are "+wages[0]);
 		System.out.println("Total Wages for month for "+company2+" are "+wages[1]);
 		System.out.println("Total Wages for month for "+company3+" are "+wages[2]);
@@ -28,27 +31,31 @@ public class EmpWageBuilder {
 
 		
 		public int empWage(int empWagePerHr, int maxWorkingDays, int workingDays, int empAbsent, int partTime, int fullTime, int totalEmpHours, int empHrs, int maxWorkingHrs, String company) {
-
+			//Calculating work hours until maximum work days and hours are reached
 			while (workingDays < maxWorkingDays && totalEmpHours < maxWorkingHrs) {
 				workingDays++;
 				final double randomValue = Math.floor(Math.random() * 10) % 3;
 				switch ((int) randomValue) {
+					//if employee is absent
 					case 0: {
 						empHrs = 0;
 						empAbsent++;
 						break;
 					}
+					//if employee is present and full time
 					case 1: {
 						empHrs = 8;
 						fullTime++;
 						break;
 					}
+					//if employee is present and part time
 					case 2: {
 						empHrs = 4;
 						partTime++;
 						break;
 					}
 				}
+				//calculating total hours given by the employee
 				totalEmpHours = totalEmpHours + empHrs;
 			}
 
@@ -60,7 +67,7 @@ public class EmpWageBuilder {
 			System.out.println("Employee was Present as absent for " + empAbsent + " Days");
 
 			System.out.println("Employee worked for a total of " + totalEmpHours + " Hours in " + workingDays + " Days");
-
+			// Calculating total wage of employee
 			int empWage = totalEmpHours * empWagePerHr;
 			System.out.println("Total Employee Salary for the month is " + empWage);
 
