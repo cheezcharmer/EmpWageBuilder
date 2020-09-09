@@ -1,18 +1,17 @@
 import java.util.*;
-interface employeeWageMethod	{
 
-	public void calculatedEmployeeWage( CompanyEmpWage companyEmployee );
+interface employeeWageBuilder	{
+	public void calculatedEmployeeWage(CompanyEmpWage companyEmployee);
 }
 
-public class EmpWageBuilder implements employeeWageMethod{
+public class EmpWageBuilder implements employeeWageBuilder{
 
-	HashMap<Integer, Integer> empDailyAndTotalWage = new HashMap<>();
+	// ArrayList to Store daily Wage along with Monthly Wage
+	ArrayList<Integer> empDailyAndTotalWage = new ArrayList<Integer>();
 
 	/**
 	 *calculate employee daily wages based on type of employee
-	 *@return-> total employee wage
 	 */
-
 	public void calculatedEmployeeWage(CompanyEmpWage companyEmployee)
 	{
 		//VARIABLES
@@ -22,6 +21,7 @@ public class EmpWageBuilder implements employeeWageMethod{
 		int totalWorkingDays=0;
 		int empDailyWage=0;
 		int empTotalWage=0;
+
 		while(totalWorkingDays<companyEmployee.getMaxDays() && totalEmployeeHour<companyEmployee.getMaxWorkingHour())
 		{
 			totalWorkingDays++;
@@ -46,21 +46,15 @@ public class EmpWageBuilder implements employeeWageMethod{
 			totalEmployeeHour=(totalEmployeeHour + employeeHour);
 
 			//Daily Employee Wage
-			empDailyWage=employeeHour*companyEmployee.getEmpRatePerHour();
-
-			//total employee Wage
-			empTotalWage=totalEmployeeHour*companyEmployee.getEmpRatePerHour();
-
-			empDailyAndTotalWage.put(empDailyWage,empTotalWage);
-
-			for (int i:empDailyAndTotalWage.keySet())
-				System.out.println("Daily Wage --> "+ i + "total employee wage-->" + empDailyAndTotalWage.get(i));
-
+			empDailyWage=(employeeHour*companyEmployee.getEmpRatePerHour());
+			empDailyAndTotalWage.add(empDailyWage);
 		}
 
+		//total employee Wage
+		empTotalWage=(totalEmployeeHour*companyEmployee.getEmpRatePerHour());
+		empDailyAndTotalWage.add(empTotalWage);
+		companyEmployee.setTotalWage(empTotalWage);
 	}
-
-
 	public static void main(String args[]){
 
 		//created object of class
@@ -69,14 +63,41 @@ public class EmpWageBuilder implements employeeWageMethod{
 		//DECLARING ARRAY OF COMPANY EMPLOYEE WAGE OBJECT
 		ArrayList<CompanyEmpWage> company=new ArrayList<CompanyEmpWage>();
 
-		company.add(new CompanyEmpWage("TCS",20,100,20));
-		employeeWage.calculatedEmployeeWage(company.get(0));
+		while(true){
+			System.out.println("Welcome to Employee Wage Portal");
+			System.out.println("Enter Your Choice to show company total wage");
+			System.out.println("press 1 for TCS");
+			System.out.println("press 2 for Infosys");
+			System.out.println("press 3 for Wipro");
+			System.out.println("Press any other number to exit");
 
-		company.add(new CompanyEmpWage("Infosys",10,50,20));
-		employeeWage.calculatedEmployeeWage(company.get(1));
+			Scanner sc=new Scanner(System.in);
+			int choice=sc.nextInt();
+			switch(choice){
+				case 1:
+					company.add(new CompanyEmpWage("TCS",20,100,20));
+					employeeWage.calculatedEmployeeWage(company.get(0));
+					System.out.println("total Employee Wage of Tcs Company" +company.get(0).getTotalWage());
+					break;
 
-		company.add(new CompanyEmpWage("Wipro",10,30,10));
-		employeeWage.calculatedEmployeeWage(company.get(2));
+				case 2:
+					company.add(new CompanyEmpWage("Infosys",20,50,10));
+					employeeWage.calculatedEmployeeWage(company.get(1));
+					System.out.println("total Employee Wage of Infosys Company"+company.get(1).getTotalWage());
+					break;
+
+				case 3:
+					company.add(new CompanyEmpWage("Wipro",10,60,10));
+					employeeWage.calculatedEmployeeWage(company.get(2));
+					System.out.println("total Employee Wage of Wipro Company"+company.get(2).getTotalWage());
+					break;
+
+				default:
+					//System.out.println("Invalid choice");
+					System.exit(0);
+
+			}
+		}
 	}
 }
 
@@ -116,7 +137,7 @@ class CompanyEmpWage{
 		return totalWage;
 	}
 
-	public void setTotalWage( int totalWage ){
-		this.totalWage = totalWage;
+	public void setTotalWage(int totalWage){
+		this.totalWage=totalWage;
 	}
 }
