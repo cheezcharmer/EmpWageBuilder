@@ -75,19 +75,19 @@ public class EmpWageBuilder implements employeeWageBuilder{
 			int choice=sc.nextInt();
 			switch(choice){
 				case 1:
-					company.add(new CompanyEmpWage("TCS",20,100,20));
+					company.add(new CompanyEmpWage("Microsoft",20,100,20));
 					employeeWage.calculatedEmployeeWage(company.get(0));
 					System.out.println("total Employee Wage for microsoft " +company.get(0).getTotalWage());
 					break;
 
 				case 2:
-					company.add(new CompanyEmpWage("Infosys",20,50,10));
+					company.add(new CompanyEmpWage("Tesla",20,50,10));
 					employeeWage.calculatedEmployeeWage(company.get(1));
 					System.out.println("total Employee Wage for tesla "+company.get(1).getTotalWage());
 					break;
 
 				case 3:
-					company.add(new CompanyEmpWage("Wipro",10,60,10));
+					company.add(new CompanyEmpWage("Google",10,60,10));
 					employeeWage.calculatedEmployeeWage(company.get(2));
 					System.out.println("total Employee Wage For Google "+company.get(2).getTotalWage());
 					break;
