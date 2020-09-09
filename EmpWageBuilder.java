@@ -66,9 +66,9 @@ public class EmpWageBuilder implements employeeWageBuilder{
 		while(true){
 			System.out.println("Welcome to Employee Wage Portal");
 			System.out.println("Enter Your Choice to show company total wage");
-			System.out.println("press 1 for TCS");
-			System.out.println("press 2 for Infosys");
-			System.out.println("press 3 for Wipro");
+			System.out.println("press 1 for Microsoft");
+			System.out.println("press 2 for Tesla");
+			System.out.println("press 3 for Google");
 			System.out.println("Press any other number to exit");
 
 			Scanner sc=new Scanner(System.in);
@@ -77,19 +77,19 @@ public class EmpWageBuilder implements employeeWageBuilder{
 				case 1:
 					company.add(new CompanyEmpWage("TCS",20,100,20));
 					employeeWage.calculatedEmployeeWage(company.get(0));
-					System.out.println("total Employee Wage of Tcs Company" +company.get(0).getTotalWage());
+					System.out.println("total Employee Wage for microsoft " +company.get(0).getTotalWage());
 					break;
 
 				case 2:
 					company.add(new CompanyEmpWage("Infosys",20,50,10));
 					employeeWage.calculatedEmployeeWage(company.get(1));
-					System.out.println("total Employee Wage of Infosys Company"+company.get(1).getTotalWage());
+					System.out.println("total Employee Wage for tesla "+company.get(1).getTotalWage());
 					break;
 
 				case 3:
 					company.add(new CompanyEmpWage("Wipro",10,60,10));
 					employeeWage.calculatedEmployeeWage(company.get(2));
-					System.out.println("total Employee Wage of Wipro Company"+company.get(2).getTotalWage());
+					System.out.println("total Employee Wage For Google "+company.get(2).getTotalWage());
 					break;
 
 				default:
